@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student list</title>
+</head>
+<body>
+<a href="/addstudent">Add new student</a>
+<p>Students:</p>
+
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Major</th>
+        <th>Tests</th>
+        <th></th>
+    </tr>
+    <tr th:each="student:${students}">
+        <td th:text="${student.firstName}"></td>
+        <td th:text="${student.lastName}"></td>
+        <td th:text="${student.major}"></td>
+        <td>
+            <ul>
+                <li th:each="test : *{student.tests}" th:text="${test.subject + ':' + test.date + ':' + test.score}"></li>
+            </ul>
+        </td>
+        <td><a th:href="@{/addtest(id=${student.id})}">Add test</a></td>
+    </tr>
+</table>
+
+</body>
+</html>

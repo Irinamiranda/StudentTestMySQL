@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Student Test</title>
+</head>
+<body>
+<form action="#"
+      th:action="@{/processTest}"
+      th:object="${test}"
+      method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <input type="hidden" th:field="*{student}"/>
+    Student: <span th:text="*{student.firstName + ' ' + student.lastName}"></span><br/>
+    Subject: <input type="text" th:field="*{subject}"/>
+    <span th:if="${#fields.hasErrors('subject')}"
+          th:errors="*{subject}"></span><br/>
+
+    Date: <input type="text" th:field="*{date}"/>
+    <span th:if="${#fields.hasErrors('date')}"
+          th:errors="*{date}"></span><br/>
+
+    Score: <input type="text" th:field="*{score}"/>
+    <span th:if="${#fields.hasErrors('score')}"
+          th:errors="*{score}"></span><br/>
+
+    <br/>
+    <input type="submit" value="Submit"/>
+
+</form>
+</body>
+</html>
